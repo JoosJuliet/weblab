@@ -1,0 +1,78 @@
+body {
+  font-family: Helvetica, Verdana, sans-serif;
+	/*set body font style - text in the body should be displayed in Helvetica, Verdana, or sans-serif font (in this order of precedence)*/
+	color: #939396;
+	background-color: #1D2475;
+	/*set the color of the page to #939396 and background-color of the page to #1D2475*/
+	background-image: url("cse326bg.png") ;
+	background-position: top right;
+	/*be at the top right hand corner of your page*/
+	background-repeat : no-repeat;
+	background-attachment:fixed;
+	/*be fixed and not scroll with the rest of the page (background image should always stay at the same position of the page when scrolled)*/
+}
+a {
+	color: #FF4F4F;
+	/*set the color of a link to #FF4F4F*/
+}
+a:hover {
+	color: #939396;
+	/*remove the text decorations for links (for visited links as well)*/
+	text-decoration: underline;
+	/*put underline to a link text when mouse is over it*/
+}
+h1 {
+	font-size: 40pt;
+	/*change the font size of the top level heading to 40 point*/
+	text-shadow: green 3px 3px;
+	/*put green text shadow for the first level heading (3px to the right and top)*/
+}
+h1, h2 {
+	color: #F7931E;
+}
+/*set the color of the first and the second level heading to #F7931E*/
+li {
+	text-align: left;
+	/* ㅁㅏㅈㄴㅏ? align the texts in lists (both ordered and unordered) and blockquotes to the left*/
+}
+dl{
+	font-size: 70%;
+	/*reduce the font size of the text in definition lists to 70%*/
+}
+dt {
+	font-weight: bold;
+}
+/*make the definition terms in a definition list bold*/
+dt > dl {
+	font-weight: bold;
+	color : #FFF86B;
+}
+/* 맞나? set the color of strongly emphasized texts and the definition terms in a definition list to #FFF86B*/
+blockquote p:first-child {
+	font-size: 80%;
+	color: #D1DFEB;
+}
+/*  set the color of the quoted text (inline) to #D1DFEB*/
+ul {
+  list-style-type: square;
+}
+/*change the bullet style for unordered lists to square*/
+p::first-letter {
+	font-weight: bold;
+	font-size: 150%;
+}
+/*make the first character of the first word in a paragraph bold and change its font size to 150%*/
+table, td, th {
+	border: dotted;
+	border-collapse: collapse;
+}
+/*draw a dotted border line for table and every cell in the table
+merge the border line for table and cells*/
+img {
+	outline: medium ridge #F7931E;
+}
+/*  맞나? include a medium thick ridge outline with #F7931E color to images of my favorite things in the page*/
+a img {
+	outline: none;
+}
+/*validation link images should not have outline (override style for validation link images)*/
