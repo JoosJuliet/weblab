@@ -62,7 +62,7 @@ h1 {
   /*'33%' overall rating text in this section uses 48pt red bold font*/
 }
 
-#overviewimage {
+overview {
 	float: right;
 	border-top-right-radius: 10px;
   /*
@@ -146,7 +146,6 @@ p img {
   font-family: Arial, sans-serif;
   /*uses an 8pt Arial or any sans-serif font available on the system*/
 
-  padding-top: 10px;
   padding-bottom: 20px;
    /*
      TODO
