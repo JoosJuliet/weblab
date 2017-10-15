@@ -1,0 +1,206 @@
+body {
+  background-image: url('source/background.png');
+  font-family: Verdana, Tahoma, san-serif;
+  font-size: 8pt;
+  margin: 0px;
+  padding: 0px;
+}
+
+#banner img {
+  display: block;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#banner {
+	background-image: url('source/bannerbg.png');
+  background-repeat: repeat-x;
+}
+
+
+
+h1 {
+  font-size: 24pt;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 3px 3px #999999;
+}
+
+.overallarea {
+  /*제일 위에 감싸는 것*/
+	position: relative;
+	width: 800px;
+  /*
+    occupies 800px width and centered horizontally within the page
+    when the page (browser) resize horizontally,
+    overall content area should remain centered horizontally on the page
+  */
+
+  border: 4px solid gray;
+  border-radius: 20px;
+  /*has 4px gray solid border with 20px radius round corner*/
+	margin: auto;
+	overflow: auto;
+}
+
+.rottenbig {
+	border-top-left-radius: 10px;
+  /*
+    border에 맞춰서 radius를 하려면 2분의 1을 해야하는구나
+    should be large enough to contain all of its content (use overflow property in CSS)
+  */
+	background-image: url('source/rbg.png');
+  background-repeat: repeat-x;
+  /*
+    at the background of this section rbg.png repeats horizontally across the entire length of the section
+  */
+	height: 83px;
+  /*both images are 83px tall*/
+	font-size: 48pt;
+	color: red;
+	font-weight: bold
+  /*'33%' overall rating text in this section uses 48pt red bold font*/
+}
+
+#overviewimage {
+	float: right;
+	border-top-right-radius: 10px;
+  /*
+    border에 맞춰서 radius를 하려면 2분의 1을 해야하는구나
+    should be large enough to contain all of its content (use overflow property in CSS)
+  */
+}
+
+.rottenbig img{
+  vertical-align: bottom;
+}
+/*the large 'rotten' image is rottenbig.png and vertically aligned at the bottom*/
+
+
+.contentarea {
+	float: left;
+	width: 550px;
+  /*
+    On the left side of overall content area, there are 550px-wide section with rotten 33% rating and critics’ reviews of the film.
+  */
+}
+
+.split {
+	width: 255px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 15px;
+
+  /*
+  Below the 33% overall rating section, there are two columns of reviews where :
+
+  each column occupies 47% of the width of the overall left section
+  there is a horizontal spacing of 2% between columns and neighboring content (do not use the new CSS3 column property)
+  총 합하면 275니까 두배하면 550인데 그래서 계산해서 한건데 -_- 이게 맞나...?
+  */
+}
+
+
+
+p.review {
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: #E8DC9B;
+  /*uses bold 8pt font & has background color of #E8DC9B*/
+  border: 2px solid gray;
+  border-radius: 10px;
+  /*has 2px gray border with 10px radius round corner*/
+  padding: 8px;
+  /*has 8px spacing between quote box’s content and its border*/
+	overflow: auto;
+  /*review text should wrap around the fresh/rotten.gif icon as needed*/
+
+}
+
+p img {
+	float: left;
+	margin-right: 5px;
+}
+/*has fresh.gif or rotten.gif icon for the each review on the left side of the box has 5px spacing on the right*/
+/*has reviewer icon (critic.gif) that is shown to the left of the text and has 5px horizontal spacing from the text*/
+
+.reviewer{
+  padding-bottom: 20pt;
+}
+/*has 20pt of vertical space between reviews.*/
+
+.reviewer span{
+  font-style: italic;
+}
+/*follows under the quote box where review's affiliation is in italic*/
+
+
+.overview {
+	width: 250px;
+  background-color: #A2B964;
+  /*is 250px wide and has a background color of #A2B964*/
+
+	float: right;
+
+  font-size: 8pt;
+  font-family: Arial, sans-serif;
+  /*uses an 8pt Arial or any sans-serif font available on the system*/
+
+  padding-top: 10px;
+  padding-bottom: 20px;
+   /*
+     TODO
+     이것으로 했는데 이게 맞을런지...?it is assumed that the general overview section will always be taller than the section of reviews to its left
+   */
+}
+
+
+
+dd, dt {
+	padding-left: 10px;
+	padding-right: 10px;
+  /*
+    uses definition list (<dl>, <dt>, <dd> elements)
+  */
+
+}
+dt {
+  margin-top:10pt;
+  /*has 10pt spacing between the edge of the section and the text of the list*/
+  font-weight: bold;
+  /*each definition term has bold text and has 10pt vertical spacing between it and the element above it*/
+
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+/*has a list of links at the bottom that sohuld be shown without bullets or indentation*/
+
+
+#reviewnums {
+  clear: both;
+  text-align: center;
+  background-color: #A2B964;
+  bottom: 0;
+  margin: auto;
+  padding: 5px;
+  /*
+    background color of #A2B964
+    5px spacing between its text and the element’s own outer edge
+    should have no spacing between its vertically neighbouring elements
+  */
+
+}
+
+#validator{
+  opacity: 0.5;
+  position:fixed;
+	bottom:0px;
+	right:0px;
+  /*
+    remain fixed in the page's bottom-right corner, even after scrolling
+    appear as 50% opaque, halfway transparent
+  */
+}
