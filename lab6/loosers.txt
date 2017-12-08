@@ -1,0 +1,24 @@
+dfdf;2030;34324;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;44444;mastercard
+dfdf;2030;4444;visa
+sdsd sd;sdsd;4444;visa
+fasf;20130;55355;mastercard
+fasf;20130;55355;mastercard
+fasf;20130;45355;mastercard
+fasf;20130;45355;visa
+fasf;20130;5355;mastercard
+fasf;20130;4355;visa
+fasf;20130;5355;mastercard
+fasf;20130;4355;visa
+fasf;20130;4355444444444444;visa
+fasf;20130;4355444444444444;visa
+fasf;20130;4355444444444444;visa
+fasf;20130;4355444444444444;visa
+dfdf;2323;4123456789012345;visa
+dfdf;2323;5123456789012345;mastercard

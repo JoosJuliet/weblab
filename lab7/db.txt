@@ -1,0 +1,294 @@
+/*
+ex1
+*/
+
+CREATE TABLE `department_copy` (
+  `dept_no` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `dept_name` varchar(20) NOT NULL DEFAULT '',
+  `office` varchar(20) NOT NULL DEFAULT '',
+  `office_tel` varchar(13) DEFAULT NULL,
+  PRIMARY KEY (`dept_no`),
+  KEY `preserve_unique` (`dept_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `student_copy` (
+  `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL DEFAULT '',
+  `year` tinyint(11) NOT NULL DEFAULT '1',
+  `dept_no` int(11) NOT NULL,
+  `major` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+Ex 2: Insert data
+(dept_no in student table and dept_no in department table must match)
+*/
+
+insert into student values (20070002, '송은이', 3, 4, '경영학');
+insert into student values  (20060001, '박미선', 4, 4, '경영학');
+insert into student values (20030001, '이경규', 4, 2, '전자공학');
+insert into student values  (20040003, '김용만', 3, 2, '전자공학') ;
+insert into student values (20060002, '김국진', 3, 1, '컴퓨터공학');
+insert into student values (20100002, '한선화', 3, 4, '경영학');
+insert into student values (20110001, '송지은', 2, 1, '컴퓨터공학');
+insert into student values  (20080003, '전효성', 4, 3, '법학') ;
+insert into student values (20040002, '김구라', 4, 5, '영문학');
+insert into student values  (20070001, '김숙', 4, 4, '경영학');
+insert into student values (20100001, '황광희', 3, 4, '경영학');
+insert into student values  (20110002, '권지용', 2, 1, '전자공학') ;
+insert into student values (20030002, '김재진', 5, 1, '컴퓨터공학');
+insert into student values (20070003, '신봉선', 4, 3, '법학') ;
+insert into student values (20070005, '김신영', 2, 5, '영문학');
+insert into student values  (20100003, '임시환', 3, 1, '컴퓨터공학') ;
+insert into student values (20070007, '정준하', 2, 4, '경영학');
+
+
+
+INSERT INTO department (dept_name, office, office_tel)
+VALUES ('컴퓨터공학', '이학관 101호', '02-3290-0123') ;
+INSERT INTO department (dept_name, office, office_tel)
+VALUES ('전자공학', '공학관 401호', '02-3290-2345') ;
+INSERT INTO department (dept_name, office, office_tel)
+VALUES ('법학', '법학관 201호', '02-3290-7896')  ;
+INSERT INTO department (dept_name, office, office_tel)
+VALUES ( '경영학', '경영관 104호', '02-3290-1112') ;
+INSERT INTO department (dept_name, office, office_tel)
+VALUES ('영문학', '문화관 303호', '02-3290-4412');
+
+/*
+Ex 3:
+
+*/
+update department set dept_name='전자전기공학' where dept_name='전자공학';
+-- '전자공학' department changed its name to '전자전기공학'
+
+INSERT INTO department (dept_name, office, office_tel)
+VALUES  ('특수교육학과', '공학관 403호', '02-3290-2347');
+-- a new department called '특수교육학과' is created at 공학관 403호 (02-3290-2347)
+
+update student set major = "특수교육학과" where name = "송지은";
+-- student named '송지은' has transferred to the newly created department
+
+delete from student where name = '권지용';
+-- student named '권지용' quit the college to further pursue his singing career
+
+delete from student where name = '김재진';
+-- student named '김재진' was kicked out of the college for his disrespectful and unethical actions
+
+
+/*
+ex 4:
+search for all students from 컴퓨터공학
+search for each sutdent's id, year, and major
+search for all 3rd year students
+search for all 1st and 2nd year students
+search for all students from 경영학과 using dept_no from department table
+*/
+
+select * from student where major = '컴퓨터공학';
+-- search for all students from 컴퓨터공학
+select student_id, year, major from student;
+-- search for each sutdent's id, year, and major
+select * from student where year = 3;
+-- search for all 3rd year students
+select * from student where year = 1 or year = 2;
+-- search for all 1st and 2nd year students
+SELECT * FROM student s JOIN department d ON s.dept_no=d.dept_no
+WHERE dept_name='경영학';
+--search for all students from 경영학과 using dept_no from department table
+
+
+
+/*
+ex5-0
+search for all students who has student_id that contains 2007 (LIKE)
+*/
+select * from student where student_id like "2007%";
+/*
+ex5-1
+search for all students and order them by student_id (ORDER BY)
+*/
+select * from student order by student_id;
+/*
+ex5-2
+group students by the major and search for the major where its students average year is greater than 3 (GROUP BY, HAVING)
+*/
+select major from student group by major having avg(year) > 3;
+
+/*
+ex5-3
+search for only two students from 경영학 who has student_id that contains 2007 (LIMIT)
+*/
+select * from student where major="경영학" where student_id like "2007%" limit 2;
+
+
+
+
+/*
+ex6-0
+search all roles played in the movie named Pi. (28 rows)
+
+SELECT r.role
+FROM roles r
+JOIN movies m ON r.movie_id = m.id
+WHERE m.name = 'Pi'; */
+
+/*
+ex6-1
+search first/last names of all actors who appeared in Pi along with their roles (28 rows)
+
+SELECT first_name, last_name, role
+FROM actors
+JOIN roles
+WHERE movie_id = ( SELECT id
+		FROM movies
+		WHERE name = 'Pi' )
+AND id = actor_id
+ */
+
+
+/*
+ex6-2
+search first/last names of all actors who appeared in both Kill Bill: Vol.1 and Kill Bill: Vol.2 (10 rows)
+
+
+SELECT
+    first_name, last_name
+FROM
+    actors
+    INNER JOIN roles r1 on r1.actor_id = actors.id
+    INNER JOIN roles r2 on r2.actor_id = actors.id
+    INNER JOIN movies m1 on m1.id = r1.movie_id
+    INNER JOIN movies m2 on m2.id = r2.movie_id
+WHERE
+    m1.name = "Kill Bill: Vol. 1"
+    AND
+    m2.name = "Kill Bill: Vol. 2"
+;
+*/
+
+
+
+/*
+ex6-3
+search for top 7 actors who have appeared in the most films, in descending orde
+*/
+SELECT
+   actor_id, first_name, last_name, count(actor_id)
+FROM
+   roles inner join actors on roles.actor_id = actors.id
+
+GROUP BY
+   actor_id
+ORDER BY
+   count(actor_id) DESC
+LIMIT 7
+;
+
+
+
+
+/*
+ex6-4
+search for top 3 most popular genres of films, in descending order
+*/
+
+SELECT
+    genre,
+    COUNT(genre)
+FROM
+    movies_genres
+GROUP BY
+    genre
+ORDER BY
+    COUNT(genre) DESC
+LIMIT
+    3
+;
+
+
+/*
+ex6-6
+search the name of the director who has directed the most Thriller films
+SELECT
+   	director_id,
+   	first_name,
+    last_name,
+    genre,
+    count(director_id)
+FROM
+    movies_genres mg INNER JOIN movies_directors md ON md.movie_id = mg.movie_id
+    INNER JOIN directors d ON md.director_id = d.id
+WHERE
+    genre = 'horror'
+GROUP BY
+    director_id
+ORDER BY count(director_id) DESC
+LIMIT
+    1
+;
+*/
+
+
+/*
+ex 7-0
+search all roles grades given in the course Computer Science 143 (4 rows)
+SELECT
+    *
+FROM
+    grades g INNER JOIN courses c ON c.id = g.course_id
+WHERE
+    c.name = 'Computer Science 143'
+;
+*/
+
+/*
+ex 7-1
+search names and grades of all students who took Computer Science 143 and got a B- or better (2 rows)
+SELECT
+    s.name
+FROM
+    grades g INNER JOIN courses c ON c.id = g.course_id
+    INNER JOIN students s ON s.id = g.student_id
+WHERE
+    c.name = 'Computer Science 143'
+    AND
+    g.grade IN ('B-', 'B', 'B+', 'A-', 'A', 'A+')
+;
+
+*/
+
+/*
+ex 7-2
+search names of all students who got a B- or better in any course, along with the names of the course and the grades (5 rows)
+
+SELECT
+    s.name,
+    c.name,
+    g.grade
+FROM
+    grades g INNER JOIN courses c ON c.id = g.course_id
+    INNER JOIN students s ON s.id = g.student_id
+WHERE
+    g.grade in ('B-', 'B', 'B+', 'A-', 'A', 'A+')
+ORDER BY
+    s.name
+*/
+
+
+/*
+ex 7-3
+search names of all courses that have been taken by 2 or more students (2 rows)
+
+SELECT
+    name
+FROM
+    courses c INNER JOIN grades g ON g.course_id = c.id
+GROUP BY
+    course_id
+HAVING
+    COUNT(course_id) >= 2;
+
+*/
